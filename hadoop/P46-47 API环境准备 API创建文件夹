@@ -1,0 +1,47 @@
+P46-47 API环境准备 API创建文件夹
+1/31
+建立了INTELLIJ 客户端，需要hadoop-client的dependencies
+
+需要pass in username,和内网的ip
+
+疑惑：不需要角色(atguigu)的密码？？
+
+
+
+P46-49 hdfs API
+2/1 - 2/2
+
+因为我们是在本地上传，而不是在aws的hadoop cluster里面，所以上传时会有connection timeout error。
+
+2024-02-02 20:14:32,041 INFO [org.apache.hadoop.hdfs.DataStreamer] - Exception in createBlockOutputStream blk_1073741858_1034
+  java.net.ConnectException: Connection timed out: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946)
+	at org.apache.hadoop.net.SocketIOWithTimeout.connect(SocketIOWithTimeout.java:206)
+	at org.apache.hadoop.net.NetUtils.connect(NetUtils.java:531)
+	at org.apache.hadoop.hdfs.DataStreamer.createSocketForPipeline(DataStreamer.java:253)
+	at org.apache.hadoop.hdfs.DataStreamer.createBlockOutputStream(DataStreamer.java:1725)
+	at org.apache.hadoop.hdfs.DataStreamer.nextBlockOutputStream(DataStreamer.java:1679)
+	at org.apache.hadoop.hdfs.DataStreamer.run(DataStreamer.java:716)
+2024-02-02 20:14:32,045 WARN [org.apache.hadoop.hdfs.DataStreamer] - Abandoning BP-1241350404-172.31.52.82-1706326239876:blk_1073741858_1034
+  2024-02-02 20:14:32,118 WARN [org.apache.hadoop.hdfs.DataStreamer] - Excluding datanode DatanodeInfoWithStorage[172.31.49.148:9866,DS-19998c86-03bf-4efd-9d5e-1984a0fc6893,DISK]
+
+  解决方案如下：
+
+3.阿里云服务器，上传下载时遇到问题
+1.hdfs-site.xml中添加如下配置
+<property>
+    <name>dfs.datanode.use.datanode.hostname</name>
+    <value>true</value>
+</property>
+
+2.在客户端API添加如下配置
+configuration.set("dfs.client.use.datanode.hostname", "true");
+）
+
+作者：乘除加减
+链接：https://www.jianshu.com/p/f8d79ee00cf6
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+

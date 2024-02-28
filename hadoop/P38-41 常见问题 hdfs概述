@@ -1,0 +1,38 @@
+P38-41 常见问题 hdfs概述
+1/28
+
+文件存储系统 - 分布式、快速的寻址
+
+优点：利于一次写，多次读
+缺点：不可以多并发的存储，不支持多个小size文件（寻址时间要大于读取时间），不支持修改文件（只能append）
+
+P42-43 组成部分/hdfs文件块大小
+1/29
+namenode：管理者，寻址信息、设定等等
+datanode：打工者，真正储存信息的地方
+secondardy namenode：紧急时才用，不是hot backup，会丢失一部分的数据
+client：操作增删查改的客户端，比如网页、比如cmd line
+-> 到namenode寻址，到datanode读写数据
+
+文件块大小：取决于磁盘的读写速度，一般是128mb/256mb
+太大不好，太小也不好，太小的话寻址时间很长（需要到多个block中去寻址）
+太大的话， 上传和处理文件太慢（只能在一个server上处理，而没有利用到分布式的特点）
+
+P44-45 hdfs shell操作
+hadoop fs
+hdfs fs
+
+很多command都跟list 类似
+有个挺重要的command，查文件大小
+-du统计文件夹的大小信息
+[atguigu@hadoop102 hadoop-3.1.3]$ hadoop fs -du -s -h /jinguo
+27  81  /jinguo
+
+[atguigu@hadoop102 hadoop-3.1.3]$ hadoop fs -du  -h /jinguo
+14  42  /jinguo/shuguo.txt
+7   21   /jinguo/weiguo.txt
+6   18   /jinguo/wuguo.tx
+
+
+-setrep：设置HDFS中文件的副本数量
+[atguigu@hadoop102 hadoop-3.1.3]$ hadoop fs -setrep 10 /jinguo/shuguo.txt

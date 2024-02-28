@@ -1,0 +1,40 @@
+P87 MapReduce 框架原理
+2/20
+
+P88 （需要二刷，不太明白）
+
+P89-90 切片源码 总结 
+2/21 
+源码：
+- 每个文件分别切片
+- 切片大小默认等于block大小
+- 1.1倍则不切片
+
+P91-92 FileInputFormat
+
+TextInputFormat
+- 一行一行切割
+
+P93-94
+2/23
+Combined text input format
+小的合一起，比较常用的一种input format
+
+mapreduce工作流程
+很复杂，需要多看几次
+
+P95-96 Shuffle工作机制
+
+Partition 分区
+挺有意思的工作原理！源码写的真好！
+要自定义partitioner，然后定义多少个reduceTask（如果ReduceTask为1的话，那么就会直接不分区了嘛~）
+
+P97-98 自定义分区案例
+2/25 
+custom partitioner, set partition class in driver, set # of reduce tasks
+
+
+P99-100
+排序相关的案例
+writeable comparable
+

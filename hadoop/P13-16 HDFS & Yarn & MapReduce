@@ -1,0 +1,24 @@
+P13-17 HDFS & Yarn & MapReduce
+1/16
+HDFS: hadoop distributed file system (存储)
+name node: 2nn secondardy name node 
+data node (kept data)
+
+Yarn:
+yet another resource negotiator...
+
+resource manager, node manager, application manager, container
+
+MapReduce: （计算）
+Map -> distribute to each server
+Reduce -> combine and see the result 
+
+生态环境
+数据层
+传输层
+存储层
+计算层
+业务层
+
+P18-20 VMware, centos, ip setup
+试一下用aws ec2 set up看一下吧！

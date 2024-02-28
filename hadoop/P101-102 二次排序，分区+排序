@@ -1,0 +1,14 @@
+P101-102 二次排序，分区+排序
+2/26
+
+P103-104 Combiner 合并
+挺有意思的，如果可以用的话，可以直接把Reducer当Combiner用，提前combine
+
+P105-106 Output Format
+自定义的output，比如oracle，hbase，es等
+
+P107-108 oututFormat案例
+2/27
+挺好玩的。
+
+P109-110 maptask & reducetask 流程 ** 面试重点

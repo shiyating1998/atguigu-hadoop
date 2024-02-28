@@ -1,0 +1,75 @@
+P50-54 API文件下载 delete rename(move) list
+2/3
+
+都是API很简单！
+
+P55-56 HDFS读写流程、节点距离最近
+
+读写流程：HDFSclient先申请，namenode审核是否有权限、重命名，分配3个datanode（根据节点距离），准备output stream流，以packet（包含chunk）的形式，发送给datanode，一个一个发，返回ack。结束。
+
+到达共同祖先的总和距离
+
+P57-58
+2/5
+
+机架选择，如果有3个，1个local，两个remote
+
+读数据流程：client 请求namenode，返回元信息，选择最近的datanode，根据负载均衡选，串行的读，然后拼接在一起。
+
+P59-60 fsimage, edits
+2/6
+
+edits: logs of changes
+fsimage: checkpoint of the state 
+
+edits + fsimage = actual value 
+
+2nn: used to update fsimage + edits ===> new fsimage up to date, and bring it to nn
+
+有特殊command查看fsImage
+[atguigu@hadoop102 current]$ pwd
+/opt/module/hadoop-3.1.3/data/dfs/name/current
+
+[atguigu@hadoop102 current]$ hdfs oiv -p XML -i fsimage_0000000000000000025 -o /opt/module/hadoop-3.1.3/fsimage.xml
+
+[atguigu@hadoop102 current]$ cat /opt/module/hadoop-3.1.3/fsimage.xml
+
+P61-62 edit编辑日志\检查点时间设置
+2/7
+[atguigu@hadoop102 current]$ hdfs oev -p XML -i
+edits_0000000000000000012-0000000000000000013 -o /opt/module/hadoop-
+3.1.3/edits.xml
+[atguigu@hadoop102 current]$ cat /opt/module/hadoop-3.1.3/edits.xml
+
+checkpoint period: hdfs-default.xml
+多久拷贝一次
+多久检查一次
+
+P63-64 Datanode
+2/7
+nn: 元数据
+dn: data, metadata (文件的信息 数据长度、checksum、timestamp)
+
+启动时：dn向nn注册；每6小时上报块信息 blockreport.intervalMsec
+
+directoryscan.interval (6hr)
+每三秒发送心跳，如果10分钟+30秒回不到，则不再发送请求
+
+数据校验：
+奇偶校验位
+
+crc校验位 editplus（16进制查看）
+
+crc循环冗余校验 （连空行都会不一样噢~~）
+
+
+P65-66 掉线实现参数 
+
+2*参数 + 10 * 几次
+
+
+
+面试重点
+读写流程
+hdfs block大小
+shell的操作 （很像linux put get...ls)

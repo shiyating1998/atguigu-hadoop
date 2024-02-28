@@ -1,0 +1,37 @@
+P30-31 集群配置 群起集群并测试
+1/23
+
+3.2.4 集群配置 跟文档资料里一样
+
+
+3.2.5 一样
+注意jps command可以看hadoop起起来没有
+
+sudo chown -R atguigu:atguigu /opt
+
+
+一定要记得，8088和9870 port一定要open！！！！！！不然进不去。呜呜，开了9870，忘了8088。
+而且，下载文件是另外一个端口，所以最好的话，把所有的TCP port都开了！！
+
+太有意思了吧！
+
+
+P32-33 Hadoop 集群崩溃处理办法 历史服务器配置
+1/26
+要记得 rm -rf data/ logs/
+然后格式化 hdfs namenode -format
+
+历史服务器：可以看到运行过的任务
+
+P34-35 日志聚集功能配置 两个常用脚本（stopAll/startAll/jpsALL)
+好用！神奇！ssh！
+
+
+P36 面试题(port/config files) 集群时间同步
+
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html
+
+//seems like we don't need to set up, all machines sync up to this time 
+sudo chronyc tracking
+

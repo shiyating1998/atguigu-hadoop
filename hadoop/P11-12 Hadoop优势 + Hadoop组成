@@ -1,0 +1,15 @@
+P11-12 Hadoop优势 + Hadoop组成
+1/14
+1.0 （耦合）
+Common
+HDFS - 存储 
+MapReduce - 计算 + 资源调度
+
+2.0
+Common
+HDFS
+Yarn - 资源调度
+MapReduce - 计算
+
+3.0
+组成上没有变化
