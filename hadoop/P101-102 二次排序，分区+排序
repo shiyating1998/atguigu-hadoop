@@ -29,3 +29,10 @@ P115-116 Mapper/Reducer of ReduceJoin
 
 
 注意！！！Hadoop取出来的对象不能直接赋值，因为只是地址，需要把value赋值为一个创建为新的创建对象！BeanUtil.copyProperties
+
+P117-118 ReduceJoin断点调试 + MapJoin分析
+3/5
+
+P119-120 代码+调试
+3/6 
+没什么难点，基本都是以前的内容

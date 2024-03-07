@@ -26,7 +26,7 @@ public class TableDriver {
         job.setOutputValueClass(NullWritable.class);
 
         FileInputFormat.setInputPaths(job, new Path("C:\\Resources\\Hadoop\\资料\\11_input\\inputtable"));
-        FileOutputFormat.setOutputPath(job, new Path("C:\\hadoop\\output1"));
+        FileOutputFormat.setOutputPath(job, new Path("C:\\hadoop\\output2"));
 
         boolean b = job.waitForCompletion(true);
         System.exit(b ? 0 : 1);
